@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Formulaire
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+
+        <ion-card>
+            <ion-card-content>
+                text<br>
+                text
+            </ion-card-content>
+        </ion-card>
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">Num Pensionne :</ion-label>
+                <ion-input inputmode="number" formControlName="numPension" [(ngModel)]="verf.numPensionne"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.numPension">
+                <ng-container *ngIf="numPensionne.hasError(error.type) && (numPensionne.dirty || numPensionne.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ng-container>
+            </div>
+
+            <ion-item>
+                <ion-label position="floating">Date :</ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD" formControlName="date" [(ngModel)]="verf.date"></ion-datetime>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.date">
+                <ng-container *ngIf="date.hasError(error.type) && (date.dirty || date.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ng-container>
+            </div>
+
+            <ion-item>
+                <ion-label position="floating">Upload photo :</ion-label>
+                <ion-input inputmode="text" formControlName="photoUrl" [(ngModel)]="verf.photoUrl"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.photoUrl">
+                <ng-container *ngIf="photoUrl.hasError(error.type) && (photoUrl.dirty || photoUrl.touched)">
+                    <small class="error-message">{{error.message}}</small>
+                </ng-container>
+            </div>
+
+            <ion-button [disabled]="!registrationForm.valid" type="submit" expand="block">
+                Submit
+                <ion-icon slot="end" name="create">
+                </ion-icon>
+            </ion-button>
+        </ion-list>
+    </form>
+
+
+</ion-content>
